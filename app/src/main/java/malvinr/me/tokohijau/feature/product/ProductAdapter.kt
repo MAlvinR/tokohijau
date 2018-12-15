@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_product.view.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.data.ProductEntity
@@ -25,9 +26,12 @@ class ProductAdapter(
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindView(product: ProductEntity) = with(itemView) {
+
+            Glide.with(itemView.context).load(product.imageUri).into(iv_product_thumb)
+
             tv_product_title.text = product.name
-            tv_product_seller.text = product.shop?.name
             tv_product_price.text = product.price
+            tv_product_seller.text = product.shop?.name
         }
     }
 }

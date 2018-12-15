@@ -2,7 +2,9 @@ package malvinr.me.tokohijau.feature.product
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_product.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.data.ProductEntity
 import malvinr.me.tokohijau.data.ProductParam
@@ -14,7 +16,7 @@ class ProductActivity : AppCompatActivity(), ProductView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_product)
 
         val params = ProductParam(
                 keyword = "baju",
@@ -35,7 +37,10 @@ class ProductActivity : AppCompatActivity(), ProductView {
     }
 
     override fun onShowProduct(product: List<ProductEntity>) {
-        Log.d("TOKOHIJAU", product.toString())
+        list_product.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            adapter = ProductAdapter(product)
+        }
     }
 
     override fun onShowErrorMessage(message: String) {

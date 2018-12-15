@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <ImageView
@@ -15,32 +15,35 @@
 
     <TextView
         android:id="@+id/tv_product_title"
-        tools:text="Nama Barang"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/iv_product_thumb"
+        android:layout_width="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:lines="2"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tv_product_seller"
-        tools:text="Sold by Alvin Collection"
-        app:layout_constraintLeft_toLeftOf="@id/tv_product_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_product_title"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toRightOf="@id/iv_product_thumb"
+        tools:text="Nama Barang" />
 
     <TextView
         android:id="@+id/tv_product_price"
-        tools:text="Rp 99.999"
-        app:layout_constraintLeft_toLeftOf="@id/tv_product_title"
-        app:layout_constraintBottom_toBottomOf="@id/iv_product_thumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/tv_product_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_title"
+        tools:text="Rp 99.999" />
+
+    <TextView
+        android:id="@+id/tv_product_seller"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_product_thumb"
+        app:layout_constraintLeft_toLeftOf="@id/tv_product_title"
+        tools:text="Tokopedia" />
 
 </android.support.constraint.ConstraintLayout>

@@ -10,12 +10,12 @@ interface ApiServices {
     @GET("search/${BuildConfig.API_VERSION}/product")
     fun searchProduct(
         @Query("q") keyword: String,
-        @Query("pmin") minPrice: String,
-        @Query("pmax") maxPrice: String,
+        @Query("pmin") minPrice: Int,
+        @Query("pmax") maxPrice: Int,
         @Query("isWholesale") isWholesale: Boolean,
         @Query("official") isOfficial: Boolean,
         @Query("fshop") golds: String,
-        @Query("start") startingIndex: String,
-        @Query("rows") items: String
+        @Query("start") startingIndex: Int,
+        @Query("rows") items: Int
     ) : Flowable<ProductResponse>
 }
