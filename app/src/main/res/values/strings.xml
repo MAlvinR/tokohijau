@@ -2,4 +2,5 @@
     <string name="app_name">TokoHijau</string>
 
     <string name="filter">Filter</string>
+    <string name="search_product_hint">Apa yang anda cari?</string>
 </resources>

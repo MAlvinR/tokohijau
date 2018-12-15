@@ -20,14 +20,21 @@ class ProductActivity : AppCompatActivity(), ProductView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
+        val keyword = intent.getStringExtra("KEYWORD")
 
         val params = ProductParam(
-                keyword = "baju",
-                minPrice = 0,
-                maxPrice = 100000000,
-                isWholesale = false,
-                isOfficial = true,
-                golds = "2")
+            keyword = keyword,
+            minPrice = 0,
+            maxPrice = 100000000,
+            isWholesale = false,
+            isOfficial = true,
+            golds = "2"
+        )
 
         presenter.onAttach(this)
         presenter.searchProduct(params)
@@ -62,6 +69,7 @@ class ProductActivity : AppCompatActivity(), ProductView {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            android.R.id.home -> finish()
             R.id.action_filter -> {
                 Toast.makeText(this, getString(R.string.filter), Toast.LENGTH_SHORT).show()
             }
