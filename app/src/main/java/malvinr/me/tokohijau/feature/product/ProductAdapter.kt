@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_product.view.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.data.ProductEntity
@@ -27,7 +29,10 @@ class ProductAdapter(
 
         fun bindView(product: ProductEntity) = with(itemView) {
 
-            Glide.with(itemView.context).load(product.imageUri).into(iv_product_thumb)
+            Glide.with(itemView.context)
+                .load(product.imageUri)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
+                .into(iv_product_thumb)
 
             tv_product_title.text = product.name
             tv_product_price.text = product.price

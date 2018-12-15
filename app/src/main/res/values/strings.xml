@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TokoHijau</string>
+
+    <string name="filter">Filter</string>
 </resources>

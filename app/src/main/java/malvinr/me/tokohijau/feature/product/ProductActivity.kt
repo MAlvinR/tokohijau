@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_product.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.data.ProductEntity
@@ -23,7 +26,7 @@ class ProductActivity : AppCompatActivity(), ProductView {
                 minPrice = 0,
                 maxPrice = 100000000,
                 isWholesale = false,
-                isOfficial = false,
+                isOfficial = true,
                 golds = "2")
 
         presenter.onAttach(this)
@@ -50,5 +53,20 @@ class ProductActivity : AppCompatActivity(), ProductView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDetach()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_product, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_filter -> {
+                Toast.makeText(this, getString(R.string.filter), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return true
     }
 }
