@@ -37,7 +37,8 @@ class ProductActivity : AppCompatActivity(), ProductView,
         preferences.setKeyword(keyword)
 
         presenter.onAttach(this)
-        getProduct(preferences.getKeyword(), false, false)
+
+        getProduct()
     }
 
     override fun onShowLoading() {
@@ -69,18 +70,17 @@ class ProductActivity : AppCompatActivity(), ProductView,
         toast(message)
     }
 
-    override fun onFilterSubmit(params: ProductParam) {
-        getProduct(preferences.getKeyword(), preferences.getWholesale(), preferences.getOfficialStore())
+    override fun onFilterSubmit(/*params: ProductParam*/) {
+        getProduct()
     }
 
-    private fun getProduct(keyword: String, isWholesale: Boolean, isOfficial: Boolean) {
+    private fun getProduct() {
         val params = ProductParam(
-            keyword = keyword,
-            minPrice = 0,
-            maxPrice = 100000000,
-            isWholesale = isWholesale,
-            isOfficial = isOfficial,
-            golds = "2"
+            keyword = preferences.getKeyword(),
+            minPrice = preferences.getMinPrice(),
+            maxPrice = preferences.getMaxPrice(),
+            isWholesale = preferences.getWholesale(),
+            isOfficial = preferences.getOfficialStore()
         )
         presenter.searchProduct(params)
     }

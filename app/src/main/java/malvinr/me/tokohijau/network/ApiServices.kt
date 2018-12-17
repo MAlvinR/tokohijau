@@ -14,7 +14,7 @@ interface ApiServices {
         @Query("pmax") maxPrice: Int,
         @Query("isWholesale") isWholesale: Boolean,
         @Query("official") isOfficial: Boolean,
-        @Query("fshop") golds: String,
+        @Query("fshop") golds: Int,
         @Query("start") startingIndex: Int,
         @Query("rows") items: Int
     ) : Flowable<ProductResponse>

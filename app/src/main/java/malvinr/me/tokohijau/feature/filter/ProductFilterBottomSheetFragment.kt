@@ -18,7 +18,6 @@ import java.util.*
 
 class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private lateinit var params: ProductParam
     private var minPrice: Int = 0
     private var maxPrice: Int = 0
 
@@ -36,7 +35,8 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_bottom_sheet_filter, container, false)
@@ -61,7 +61,7 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initButtonListener() {
         tv_filter_reset.setOnClickListener {
-
+            activity?.toast("This feature is not available yet")
         }
 
         btn_filter.setOnClickListener {
@@ -73,17 +73,7 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
             preferences.setMinPrice(minPrice)
             preferences.setMaxPrice(maxPrice)
 
-            activity?.toast("PREF : minPrice : ${preferences.getMinPrice()}, maxPrice : ${preferences.getMaxPrice()}")
-            activity?.toast("VAR : minPrice : $minPrice, maxPrice : $maxPrice")
-
-            params = ProductParam(
-                minPrice = minPrice,
-                maxPrice = maxPrice,
-                isWholesale = isWholesale,
-                isOfficial = isOfficialStore
-            )
-
-            listener.onFilterSubmit(params)
+            listener.onFilterSubmit()
             dismiss()
         }
 
@@ -98,7 +88,6 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
         crsb_filter_range_price.setOnRangeSeekbarFinalValueListener { minValue, maxValue ->
             minPrice = minValue.toInt()
             maxPrice = maxValue.toInt()
-            activity?.toast("RANGE : minPrice : $minPrice, maxPrice : $maxPrice")
         }
     }
 }

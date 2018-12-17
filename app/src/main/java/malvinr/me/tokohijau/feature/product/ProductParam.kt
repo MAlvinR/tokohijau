@@ -6,7 +6,7 @@ data class ProductParam(
     var maxPrice: Int = 0,
     var isWholesale: Boolean = false,
     var isOfficial: Boolean = false,
-    var golds: String = "",
+    var golds: Int = 2,
     var startingIndex: Int = 0,
     var items: Int = 0
 )
