@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_filter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter"
+        android:textColor="#444"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_filter_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_filter_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_filter_title" />
+
+    <TextView
+        android:id="@+id/tv_filter_min_price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Min Price"
+        android:textColor="#444"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_title" />
+
+    <TextView
+        android:id="@+id/tv_filter_min_price_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_min_price_title"
+        tools:text="Rp 1000" />
+
+    <TextView
+        android:id="@+id/tv_filter_max_price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max Price"
+        android:textColor="#444"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_filter_min_price_title" />
+
+    <TextView
+        android:id="@+id/tv_filter_max_price_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_max_price_title"
+        tools:text="Rp 20,000" />
+
+    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+        android:id="@+id/crsb_filter_range_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:bar_color="@color/light_grey"
+        app:bar_highlight_color="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_min_price_value"
+        app:left_thumb_color="@color/light_grey"
+        app:max_value="@integer/default_max_price"
+        app:min_value="@integer/default_min_price"
+        app:right_thumb_color="@color/light_grey" />
+
+    <TextView
+        android:id="@+id/tv_filter_wholesale_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Wholesale"
+        android:textColor="#444"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/crsb_filter_range_price" />
+
+    <Switch
+        android:id="@+id/switch_filter_wholesale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SwitchButtonStyle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_filter_wholesale_title" />
+
+    <TextView
+        android:id="@+id/tv_filter_official_store_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Official Store"
+        android:textColor="#444"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_wholesale_title" />
+
+    <Switch
+        android:id="@+id/switch_filter_official_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SwitchButtonStyle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_filter_official_store_title" />
+
+    <Button
+        android:id="@+id/btn_filter"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Apply"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_official_store_title" />
+
+
+</android.support.constraint.ConstraintLayout>

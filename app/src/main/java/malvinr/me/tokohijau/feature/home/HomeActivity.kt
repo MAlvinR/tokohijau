@@ -10,6 +10,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.feature.product.ProductActivity
+import malvinr.me.tokohijau.utils.hideKeyboard
 
 class HomeActivity : AppCompatActivity() {
 
@@ -27,14 +28,6 @@ class HomeActivity : AppCompatActivity() {
             } else {
                 false
             }
-        }
-    }
-
-    private fun hideKeyboard() {
-        val view = currentFocus
-        if (view != null) {
-            (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                .hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 }

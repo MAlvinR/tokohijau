@@ -2,7 +2,7 @@ package malvinr.me.tokohijau.network
 
 import io.reactivex.Flowable
 import malvinr.me.tokohijau.BuildConfig
-import retrofit2.Call
+import malvinr.me.tokohijau.data.remote.model.ProductResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -2,7 +2,6 @@ package malvinr.me.tokohijau.feature.product
 
 import io.reactivex.disposables.CompositeDisposable
 import malvinr.me.tokohijau.data.DataManager
-import malvinr.me.tokohijau.data.ProductParam
 
 class ProductPresenter(private val dataManager: DataManager) {
 

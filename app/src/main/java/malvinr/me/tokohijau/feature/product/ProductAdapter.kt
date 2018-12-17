@@ -9,11 +9,11 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_product.view.*
 import malvinr.me.tokohijau.R
-import malvinr.me.tokohijau.data.ProductEntity
+import malvinr.me.tokohijau.data.locale.ProductEntity
 
 class ProductAdapter(
-        private val products: List<ProductEntity>,
-        private val listener: ProductListener
+    private val products: List<ProductEntity>,
+    private val listener: ProductListener
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
@@ -37,7 +37,8 @@ class ProductAdapter(
 
             tv_product_title.text = product.name
             tv_product_price.text = product.price
-            tv_product_seller.text = product.shop?.name
+            tv_product_shop_title.text = product.shop?.name
+            tv_product_shop_location.text = product.shop?.location
 
             setOnClickListener { listener.onProductClick(product) }
         }

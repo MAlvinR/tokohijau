@@ -1,4 +1,4 @@
-package malvinr.me.tokohijau.data
+package malvinr.me.tokohijau.data.locale
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -17,5 +17,6 @@ data class ProductEntity(
 @Parcelize
 data class Shop(
         val id: Int?,
-        val name: String?
+        val name: String?,
+        val location: String?
 ) : Parcelable

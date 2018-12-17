@@ -1,4 +1,4 @@
-package malvinr.me.tokohijau.network
+package malvinr.me.tokohijau.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -17,6 +17,7 @@ data class ProductResponse(
 
     data class Shop(
         @SerializedName("id") val id: Int?,
-        @SerializedName("name") val name: String?
+        @SerializedName("name") val name: String?,
+        @SerializedName("location") val location: String?
     )
 }

@@ -13,4 +13,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="SwitchButtonStyle">
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
 </resources>

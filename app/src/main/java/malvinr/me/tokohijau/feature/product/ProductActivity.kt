@@ -1,30 +1,29 @@
 package malvinr.me.tokohijau.feature.product
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.net.Uri
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.DrawableRes
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.content.res.AppCompatResources
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_product.*
 import malvinr.me.tokohijau.R
-import malvinr.me.tokohijau.data.ProductEntity
-import malvinr.me.tokohijau.data.ProductParam
+import malvinr.me.tokohijau.data.locale.PreferencesManager
+import malvinr.me.tokohijau.data.locale.ProductEntity
+import malvinr.me.tokohijau.feature.filter.ProductFilterBottomSheetFragment
+import malvinr.me.tokohijau.feature.filter.ProductFilterListener
+import malvinr.me.tokohijau.utils.getBitmapFromVectorDrawable
+import malvinr.me.tokohijau.utils.toast
 import org.koin.android.ext.android.inject
 
-class ProductActivity : AppCompatActivity(), ProductView, ProductListener {
+class ProductActivity : AppCompatActivity(), ProductView,
+    ProductListener, ProductFilterListener {
 
     private val presenter: ProductPresenter by inject()
+    private val preferences: PreferencesManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +34,10 @@ class ProductActivity : AppCompatActivity(), ProductView, ProductListener {
         }
 
         val keyword = intent.getStringExtra("KEYWORD")
-
-        val params = ProductParam(
-            keyword = keyword,
-            minPrice = 0,
-            maxPrice = 100000000,
-            isWholesale = false,
-            isOfficial = true,
-            golds = "2"
-        )
+        preferences.setKeyword(keyword)
 
         presenter.onAttach(this)
-        presenter.searchProduct(params)
+        getProduct(preferences.getKeyword(), false, false)
     }
 
     override fun onShowLoading() {
@@ -75,12 +66,29 @@ class ProductActivity : AppCompatActivity(), ProductView, ProductListener {
     }
 
     override fun onShowErrorMessage(message: String) {
-        Log.d("TOKOHIJAU", message)
+        toast(message)
+    }
+
+    override fun onFilterSubmit(params: ProductParam) {
+        getProduct(preferences.getKeyword(), preferences.getWholesale(), preferences.getOfficialStore())
+    }
+
+    private fun getProduct(keyword: String, isWholesale: Boolean, isOfficial: Boolean) {
+        val params = ProductParam(
+            keyword = keyword,
+            minPrice = 0,
+            maxPrice = 100000000,
+            isWholesale = isWholesale,
+            isOfficial = isOfficial,
+            golds = "2"
+        )
+        presenter.searchProduct(params)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDetach()
+        preferences.clear()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,26 +100,11 @@ class ProductActivity : AppCompatActivity(), ProductView, ProductListener {
         when (item?.itemId) {
             android.R.id.home -> finish()
             R.id.action_filter -> {
-                Toast.makeText(this, getString(R.string.filter), Toast.LENGTH_SHORT).show()
+                val fragment = ProductFilterBottomSheetFragment()
+                fragment.show(supportFragmentManager, getString(R.string.filter))
             }
         }
 
         return true
-    }
-
-    private fun getBitmapFromVectorDrawable(@DrawableRes drawableId: Int): Bitmap? {
-        var drawable = AppCompatResources.getDrawable(this, drawableId) ?: return null
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            drawable = DrawableCompat.wrap(drawable).mutate()
-        }
-
-        val bitmap = Bitmap.createBitmap(
-            drawable.intrinsicWidth,
-            drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
-        )
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.width, canvas.height)
-        drawable.draw(canvas)
-        return bitmap
     }
 }
