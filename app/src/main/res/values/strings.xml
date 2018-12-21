@@ -4,4 +4,11 @@
     <string name="filter">Filter</string>
     <string name="search_product_hint">Apa yang anda cari?</string>
     <string name="buy">Buy</string>
+    <string name="greetings">Selamat Datang</string>
+    <string name="reset">Reset</string>
+    <string name="min_price">Min Price</string>
+    <string name="max_price">Max Price</string>
+    <string name="wholesale">Wholesale</string>
+    <string name="official_store">Official Store</string>
+    <string name="apply">Apply</string>
 </resources>
