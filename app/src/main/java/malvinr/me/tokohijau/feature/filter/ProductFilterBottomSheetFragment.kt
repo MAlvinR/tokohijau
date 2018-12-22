@@ -24,6 +24,8 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var listener: ProductFilterListener
     private val preferences: PreferencesManager by inject()
 
+    private var isReset = false
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
@@ -61,17 +63,32 @@ class ProductFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initButtonListener() {
         tv_filter_reset.setOnClickListener {
-            activity?.toast("This feature is not available yet")
+            isReset = true
+
+            switch_filter_wholesale.isChecked = false
+            switch_filter_official_store.isChecked = false
+
+            crsb_filter_range_price
+                .setMinStartValue(resources.getInteger(R.integer.default_min_price).toFloat())
+                .setMaxStartValue(resources.getInteger(R.integer.default_max_price).toFloat())
+                .apply()
         }
 
         btn_filter.setOnClickListener {
             val isWholesale = switch_filter_wholesale.isChecked
             val isOfficialStore = switch_filter_official_store.isChecked
 
-            preferences.setWholesale(isWholesale)
-            preferences.setOfficialStore(isOfficialStore)
-            preferences.setMinPrice(minPrice)
-            preferences.setMaxPrice(maxPrice)
+            if (isReset) {
+                preferences.setWholesale(false)
+                preferences.setOfficialStore(false)
+                preferences.setMinPrice(resources.getInteger(R.integer.default_min_price))
+                preferences.setMaxPrice(resources.getInteger(R.integer.default_max_price))
+            } else {
+                preferences.setWholesale(isWholesale)
+                preferences.setOfficialStore(isOfficialStore)
+                preferences.setMinPrice(minPrice)
+                preferences.setMaxPrice(maxPrice)
+            }
 
             listener.onFilterSubmit()
             dismiss()
