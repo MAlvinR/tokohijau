@@ -19,6 +19,8 @@ class ProductPresenter(private val dataManager: DataManager) {
     }
 
     fun searchProduct(param: ProductParam) {
+        view?.onShowLoading()
+
         val disposable = dataManager
             .searchProduct(param)
             .subscribe({
@@ -28,5 +30,7 @@ class ProductPresenter(private val dataManager: DataManager) {
             })
 
         disposables?.add(disposable)
+
+        view?.onHideLoading()
     }
 }

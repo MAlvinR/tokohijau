@@ -16,6 +16,8 @@ import malvinr.me.tokohijau.data.locale.ProductEntity
 import malvinr.me.tokohijau.feature.filter.ProductFilterBottomSheetFragment
 import malvinr.me.tokohijau.feature.filter.ProductFilterListener
 import malvinr.me.tokohijau.utils.getBitmapFromVectorDrawable
+import malvinr.me.tokohijau.utils.toGone
+import malvinr.me.tokohijau.utils.toVisible
 import malvinr.me.tokohijau.utils.toast
 import org.koin.android.ext.android.inject
 
@@ -42,9 +44,13 @@ class ProductActivity : AppCompatActivity(), ProductView,
     }
 
     override fun onShowLoading() {
+        list_product.toGone()
+        pb_product.toVisible()
     }
 
     override fun onHideLoading() {
+        pb_product.toGone()
+        list_product.toVisible()
     }
 
     override fun onProductClick(product: ProductEntity) {
