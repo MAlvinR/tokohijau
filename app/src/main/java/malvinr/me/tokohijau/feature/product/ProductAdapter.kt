@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_product.view.*
 import malvinr.me.tokohijau.R
 import malvinr.me.tokohijau.data.locale.ProductEntity
+import malvinr.me.tokohijau.utils.loadImage
 
 class ProductAdapter(
     private val products: List<ProductEntity>,
@@ -30,10 +31,7 @@ class ProductAdapter(
 
         fun bindView(product: ProductEntity) = with(itemView) {
 
-            Glide.with(itemView.context)
-                .load(product.imageUri)
-                .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
-                .into(iv_product_thumb)
+            iv_product_thumb.loadImage(product.imageUri)
 
             tv_product_title.text = product.name
             tv_product_price.text = product.price
